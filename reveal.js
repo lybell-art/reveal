@@ -39,7 +39,6 @@ class villageSystem
 		let xPos=[], zPos=[];
 		const R=this.radius;
 		const innerRadius=R - smallRoadSize - buildingSize/2;
-		console.log(innerRadius);
 		let xStride=-innerRadius, zStride=-innerRadius;
 		let xAdjust = 0, zAdjust = 0;
 		let tmpStride;
@@ -62,7 +61,9 @@ class villageSystem
 			xPos.push(xStride);
 			xStride += padding;
 		}
+		console.log(tmpStride);
 		xAdjust = -(tmpStride-xPos[0])/2;
+		console.log(xAdjust);
 		while(zStride<=innerRadius)
 		{
 			let padding=buildingSize + roadSize();
