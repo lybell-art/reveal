@@ -5,6 +5,8 @@ class lybellP5Camera{
 		this.target=new p5.Vector(targetX, targetY, targetZ);
 		this.dist=p5.Vector.sub(this.pos, this.target).mag();
 		this.camera=createCamera(eyeX, eyeY, eyeZ, targetX, targetY, targetZ);
+		this.minZoom=0;
+		this.maxZoom=Infinity;
 	}
 	apply()
 	{
@@ -41,13 +43,24 @@ class lybellP5Camera{
 		this.pos.z=this.target.z + cosX*z1;
 		this.apply();
 	}
-	zoom(_z)
+	setDist(d)
 	{
 		let sub=p5.Vector.sub(this.pos, this.target);
-		this.dist *= pow(1.0002,_z);
+		this.dist = d;
 		sub.setMag(this.dist);
 		this.pos = p5.Vector.add(sub, this.target);
 		this.apply();
+	}
+	zoom(_z)
+	{
+		let newDist=this.dist * pow(1.0002,_z);
+		newDist=constrain(newDist, this.minZoom, this.maxZoom);
+		setDist(newDist);
+	}
+	constrainZoom(_min=0, _max=Infinity)
+	{
+		this.minZoom=_min;
+		this.maxZoom=_max;
 	}
 	screenTo3D(x, y, depth=1)
 	{
