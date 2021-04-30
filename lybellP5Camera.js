@@ -106,4 +106,11 @@ class lybellP5Camera{
 		
 		return baseO;
 	}
+	screenTo3DRevolveToTarget(x, y, radius=0.5)
+	{
+		const baseLen=this.camera.defaultEyeZ;
+		const mag=this.dist/baseLen;
+		const magRd=mag*radius;
+		this.screenTo3DRevolve(x,y,mag, magRd);
+	}
 }
