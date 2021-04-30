@@ -73,7 +73,7 @@ class lybellP5Camera{
 		baseO.add(p5.Vector.mult(AxisY, y*depth));
 		return baseO;
 	}
-	screenTo3DRevolve(x, y, depth=1, radius=0.5, debug=false)
+	screenTo3DRevolve(x, y, depth=1, radius=0.5)
 	{
 		const AxisZ=p5.Vector.sub(this.target, this.pos).normalize();
 		const AxisX=p5.Vector.cross(AxisZ, createVector(0,1,0)).normalize();
@@ -105,7 +105,6 @@ class lybellP5Camera{
 			let rootD=Math.sqrt(D);
 			let mult1=(-b+rootD)/(2*a);
 			let mult2=(-b-rootD)/(2*a);
-			if(debug) console.log(mult1, mult2);
 			if(mult1 < 0) mult1 = Infinity;
 			if(mult2 < 0) mult2 = Infinity;
 			let resMult=Math.min(mult1, mult2, depth);
