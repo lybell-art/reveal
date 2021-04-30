@@ -114,7 +114,7 @@ function setup()
 	myCam=new lybellP5Camera(0, -400, 800, 0,0,0);
 	myCam.initialize();
 	noStroke();
-	village=new villageSystem(1000,50,10,30,100);
+	village=new villageSystem(1000,100,20,60,100);
 }
 function draw()
 {
