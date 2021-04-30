@@ -98,7 +98,7 @@ class lybellP5Camera{
 		pop();
 		push();
 		fill(0,0,255);
-		translate(axisZ);
+		translate(AxisZ);
 		sphere(10);
 		pop();
 		sphere(2);
