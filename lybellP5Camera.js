@@ -101,6 +101,7 @@ class lybellP5Camera{
 		translate(axisZ);
 		sphere(10);
 		pop();
+		sphere(2);
 		
 		let baseO;
 		
