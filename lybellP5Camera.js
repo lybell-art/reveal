@@ -93,15 +93,15 @@ class lybellP5Camera{
 		
 		push();
 		fill(255,0,0);
-		translate(w);
-		sphere(10);
+		translate(dir);
+		sphere(1);
 		pop();
 		push();
 		fill(0,0,255);
 		translate(AxisZ);
-		sphere(10);
+		sphere(1);
 		pop();
-		sphere(2);
+		sphere(1);
 		
 		let baseO;
 		
