@@ -10,10 +10,11 @@ class lybellP5Camera{
 	{
 		this.camera.camera(this.pos.x, this.pos.y, this.pos.z, this.target.x, this.target.y, this.target.z);
 	}
-	initialize()
+	initialize(parent)
 	{
 		this.apply();
-		setCamera(this.camera);
+		if(parent instanceof p5 || parent instanceof p5.Graphics) parent.setCamera(this.camera);
+		else if (p5 !== undefined && setCamera !== undefined && typeof setCamera === "function") setCamera(this.camera);
 	}
 	rotate(_x, _y)
 	{
