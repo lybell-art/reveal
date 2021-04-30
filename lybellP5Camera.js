@@ -88,13 +88,12 @@ class lybellP5Camera{
 		
 		let a=dir.magSq();
 		let b=2*p5.Vector.dot(dir, w);
-		let c=baseLen*baseLen *depth*depth - baseLen*baseLen*radius*radius;
+		let c=baseLen*baseLen * (depth*depth - radius*radius);
 		let D=b*b-4*a*c;
 		
 		if(debug)
 		{
 			console.log(dir,w,a,b,c,D);
-			console.log(baseLen*baseLen *depth*depth, w.magSq());
 		}
 		
 		push();
@@ -108,8 +107,10 @@ class lybellP5Camera{
 		if(D <=0 ) baseO=p5.Vector.add(this.pos, p5.Vector.mult(dir, depth));
 		else
 		{
-			let mult1=(-b+D)/2*a;
-			let mult2=(-b-D)/2*a;
+			let rootD=Math.sqrt(D);
+			let mult1=(-b+rootD)/2*a;
+			let mult2=(-b-rootD)/2*a;
+			if(debug) console.log(mult1, mult2);
 			if(mult1 < 0) mult1 = Infinity;
 			if(mult2 < 0) mult2 = Infinity;
 			let resMult=Math.min(mult1, mult2, depth);
