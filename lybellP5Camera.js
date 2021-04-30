@@ -91,11 +91,6 @@ class lybellP5Camera{
 		let c=baseLen*baseLen * (depth*depth - radius*radius);
 		let D=b*b-4*a*c;
 		
-		if(debug)
-		{
-			console.log(dir,w,a,b,c,D);
-		}
-		
 		push();
 		fill(255,0,0,50);
 		translate(p5.Vector.sub(this.pos,w));
@@ -108,8 +103,8 @@ class lybellP5Camera{
 		else
 		{
 			let rootD=Math.sqrt(D);
-			let mult1=(-b+rootD)/2*a;
-			let mult2=(-b-rootD)/2*a;
+			let mult1=(-b+rootD)/(2*a);
+			let mult2=(-b-rootD)/(2*a);
 			if(debug) console.log(mult1, mult2);
 			if(mult1 < 0) mult1 = Infinity;
 			if(mult2 < 0) mult2 = Infinity;
