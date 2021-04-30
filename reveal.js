@@ -147,7 +147,7 @@ function draw()
 	texture(skyImg);
 	sphere(2100);
 	pop();
-	village.renderFloor();
+//	village.renderFloor();
 	
 	ambientLight(50);
 	directionalLight(200,200,200,-1,1,-1);
@@ -167,7 +167,7 @@ function draw()
 	pop();
 	let uLightPos=getUniformLightPosition(mousePos);
 	
-	village.renderBuildings();
+//	village.renderBuildings();
 }
 
 function mousePressed()
