@@ -118,6 +118,7 @@ function setup()
 	createCanvas(windowWidth,windowHeight,WEBGL);
 	myCam=new lybellP5Camera(0, -400, 800, 0,0,0);
 	myCam.initialize();
+	myCam.constrainZoom(0,2099);
 	noStroke();
 	village=new villageSystem(1000,100,20,60,250);
 }
