@@ -91,11 +91,11 @@ class lybellP5Camera{
 		let c=baseLen*baseLen * (depth*depth - radius*radius);
 		let D=b*b-4*a*c;
 		
-		push();
-		fill(255,0,0,50);
-		translate(p5.Vector.sub(this.pos,w));
-		sphere(baseLen*radius);
-		pop();
+//		push();
+//		fill(255,0,0,50);
+//		translate(p5.Vector.sub(this.pos,w));
+//		sphere(baseLen*radius);
+//		pop();
 		
 		let baseO;
 		
