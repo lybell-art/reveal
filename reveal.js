@@ -1,6 +1,7 @@
 let myCam;
 let village;
 let skyImg;
+let lightArr=[];
 
 function randInt(m,n){return Math.floor(Math.random()*(n-m))+m;}
 
@@ -108,6 +109,18 @@ class villageSystem
 	}
 }
 
+function getUniformLightPosition(mousePos)
+{
+	let res=[];
+	for(let i=0;i<lightArr.length;i++)
+	{
+		let a=lightArr[i];
+		res.push(a.x, a.y, a.z);
+	}
+	res.push(mousePos.x, mousePos.y, mousePos.z);
+	return res;
+}
+
 function preload()
 {
 	skyImg = loadImage('data/images/night_sky.jpg');
@@ -140,14 +153,28 @@ function draw()
 	directionalLight(200,200,200,-1,1,-1);
 	let mousePos=myCam.screenTo3DRevolve(mouseX - windowWidth/2,mouseY - windowHeight/2,0.7,0.2);
 //	pointLight(255,255,255,mousePos);
+	
+	for(let i=0;i<lightArr.length;i++)
+	{
+		push();
+		translate(lightArr[i]);
+		sphere(30);
+		pop();
+	}
 	push();
 	translate(mousePos);
 	sphere(30);
 	pop();
+	let uLightPos=getUniformLightPosition(mousePos);
 	
 	village.renderBuildings();
 }
 
+function mousePressed()
+{
+	let mousePos=myCam.screenTo3DRevolve(mouseX - windowWidth/2,mouseY - windowHeight/2,0.7,0.2);
+	lightArr.push(mousePos);
+}
 function windowResized()
 {
 	resizeCanvas(windowWidth, windowHeight, false);
