@@ -55,7 +55,7 @@ class lybellP5Camera{
 	{
 		let newDist=this.dist * pow(1.0002,_z);
 		newDist=constrain(newDist, this.minZoom, this.maxZoom);
-		setDist(newDist);
+		this.setDist(newDist);
 	}
 	constrainZoom(_min=0, _max=Infinity)
 	{
