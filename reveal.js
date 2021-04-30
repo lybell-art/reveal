@@ -39,6 +39,7 @@ class villageSystem
 		let xPos=[], zPos=[];
 		const R=this.radius;
 		const innerRadius=R - smallRoadSize - buildingSize/2;
+		console.log(innerRadius);
 		let xStride=-innerRadius, zStride=-innerRadius;
 		let xAdjust = 0, zAdjust = 0;
 		let tmpStride;
@@ -48,7 +49,7 @@ class villageSystem
 		{
 			const diagonalBuildingSize=buildingSize /2 * Math.sqrt(2);
 			const rad=R-diagonalBuildingSize;
-			return rad <= (x*x+z*z) ;
+			return rad >= (x*x+z*z) ;
 		};
 		
 		this.buildings=[]; //clear data
@@ -90,7 +91,7 @@ class villageSystem
 	{
 		push();
 		translate(0,0,this.planeAltitude);
-		fill(10);
+		fill("#24adaf");
 		circle(0,0,this.radius);
 		pop();
 	}
