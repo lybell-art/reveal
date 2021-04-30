@@ -18,7 +18,7 @@ function draw()
 	
 	lights();
 	fill(200);
-	cube(100,100,50);
+	box(100,100,50);
 }
 
 function windowResized()
