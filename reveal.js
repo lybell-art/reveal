@@ -151,7 +151,7 @@ function draw()
 	
 	ambientLight(50);
 	directionalLight(200,200,200,-1,1,-1);
-	let mousePos=myCam.screenTo3DRevolve(mouseX - windowWidth/2,mouseY - windowHeight/2,0.7,0.3);
+	let mousePos=myCam.screenTo3DRevolveToTarget(mouseX - windowWidth/2,mouseY - windowHeight/2,0.5);
 //	pointLight(255,255,255,mousePos);
 	
 	for(let i=0;i<lightArr.length;i++)
@@ -172,7 +172,7 @@ function draw()
 
 function mousePressed()
 {
-	let mousePos=myCam.screenTo3DRevolve(mouseX - windowWidth/2,mouseY - windowHeight/2,0.7,0.3, true);
+	let mousePos=myCam.screenTo3DRevolveToTarget(mouseX - windowWidth/2,mouseY - windowHeight/2,0.5);
 	lightArr.push(mousePos);
 }
 function windowResized()
