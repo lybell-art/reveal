@@ -37,7 +37,8 @@ class villageSystem
 	resetBuilding(buildingSize, smallRoadSize, largeRoadSize)
 	{
 		let xPos=[], zPos=[];
-		const innerRadius=this.radius - smallRoadSize - buildingSize/2;
+		const R=this.radius;
+		const innerRadius=R - smallRoadSize - buildingSize/2;
 		let xStride=-innerRadius, zStride=-innerRadius;
 		let xAdjust = 0, zAdjust = 0;
 		let tmpStride;
@@ -46,7 +47,7 @@ class villageSystem
 		const inArea=function(x, z)//check building is in circle
 		{
 			const diagonalBuildingSize=buildingSize /2 * Math.sqrt(2);
-			const rad=this.radius-diagonalBuildingSize;
+			const rad=R-diagonalBuildingSize;
 			return rad <= (x*x+z*z) ;
 		};
 		
