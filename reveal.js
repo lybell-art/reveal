@@ -63,7 +63,7 @@ class villageSystem
 			xPos.push(xStride);
 			xStride += padding;
 		}
-		xAdjust = -(tmpStride+xPos[0])/2;;
+		xAdjust = -(tmpStride+xPos[0])/2;
 		while(zStride<=innerRadius)
 		{
 			let padding=buildingSize + roadSize();
@@ -92,9 +92,8 @@ class villageSystem
 	{
 		push();
 		translate(0,this.planeAltitude,0);
-		rotateX(PI/2);
-		fill(25);
-		circle(0,0,this.radius*2);
+		fill(42,34,39);
+		cylinder(this.radius*2.5,1);
 		pop();
 	}
 	renderBuildings()
