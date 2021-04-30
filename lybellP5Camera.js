@@ -90,7 +90,17 @@ class lybellP5Camera{
 		let b=2*p5.Vector.dot(dir, w);
 		let c=baseLen*baseLen * (depth - radius)*(depth - radius);
 		let D=b*b-4*a*c;
-		console.log(D);
+		
+		push();
+		fill(255,0,0);
+		translate(w);
+		sphere(10);
+		pop();
+		push();
+		fill(0,0,255);
+		translate(axisZ);
+		sphere(10);
+		pop();
 		
 		let baseO;
 		
