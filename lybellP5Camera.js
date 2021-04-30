@@ -88,7 +88,7 @@ class lybellP5Camera{
 		
 		let a=dir.magSq();
 		let b=2*p5.Vector.dot(dir, w);
-		let c=depth*depth - baseLen*baseLen*radius*radius;
+		let c=baseLen*baseLen * (depth - radius)*(depth - radius);
 		let D=b*b-4*a*c;
 		console.log(D);
 		
