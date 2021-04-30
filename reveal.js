@@ -3,7 +3,7 @@ let myCam;
 function setup()
 {
 	createCanvas(windowWidth,windowHeight,WEBGL);
-	myCam=new lybellP5Camera(0, -400, 800, 0,0,0);
+	myCam=new lybellP5Camera(0, -400, 800, 0,100,0);
 	myCam.initialize();
 	noStroke();
 }
