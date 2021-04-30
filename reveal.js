@@ -49,7 +49,6 @@ class villageSystem
 		{
 			const diagonalBuildingSize=buildingSize /2 * Math.sqrt(2);
 			const rad=R-diagonalBuildingSize;
-			console.log(rad);
 			return rad*rad >= (x*x+z*z) ;
 		};
 		
@@ -139,7 +138,7 @@ function draw()
 	
 	ambientLight(50);
 	directionalLight(200,200,200,-1,1,-1);
-	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.3);
+	let mousePos=myCam.screenTo3DRevolve(mouseX - windowWidth/2,mouseY - windowHeight/2,0.7,0.2);
 //	pointLight(255,255,255,mousePos);
 	push();
 	translate(mousePos);
