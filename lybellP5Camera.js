@@ -73,7 +73,7 @@ class lybellP5Camera{
 		baseO.add(p5.Vector.mult(AxisY, y*depth));
 		return baseO;
 	}
-	screenTo3DRevolve(x, y, depth=1, radius=0.5)
+	screenTo3DRevolve(x, y, depth=1, radius=0.5, debug=false)
 	{
 		const AxisZ=p5.Vector.sub(this.target, this.pos).normalize();
 		const AxisX=p5.Vector.cross(AxisZ, createVector(0,1,0)).normalize();
@@ -91,17 +91,16 @@ class lybellP5Camera{
 		let c=baseLen*baseLen * (depth - radius)*(depth - radius);
 		let D=b*b-4*a*c;
 		
+		if(debug)
+		{
+			console.log(dir,w,a,b,c,D);
+		}
+		
 		push();
-		fill(255,0,0);
-		translate(dir);
-		sphere(1);
+		fill(255,0,0,50);
+		translate(p5.Vector.sub(this.pos,w));
+		sphere(baseLen*radius);
 		pop();
-		push();
-		fill(0,0,255);
-		translate(AxisZ);
-		sphere(1);
-		pop();
-		sphere(1);
 		
 		let baseO;
 		
