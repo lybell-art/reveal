@@ -62,7 +62,7 @@ class villageSystem
 			xStride += padding;
 		}
 		console.log(tmpStride);
-		xAdjust = -(tmpStride-xPos[0])/2;
+		xAdjust = -(tmpStride+xPos[0])/2;
 		console.log(xAdjust);
 		while(zStride<=innerRadius)
 		{
@@ -71,7 +71,7 @@ class villageSystem
 			zPos.push(zStride);
 			zStride += padding;
 		}
-		zAdjust = -(tmpStride-zPos[0])/2;
+		zAdjust = -(tmpStride+zPos[0])/2;
 		
 		//get Each Building's Position
 		for(let i=0;i<xPos.length;i++)
