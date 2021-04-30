@@ -1,11 +1,118 @@
 let myCam;
+let village;
+
+function randInt(m,n){return Math.floor(Math.random()*(n-m))+m;}
+
+
+class villageBuilding
+{
+	constructor(x, y, z, size, typeNo)
+	{
+		this.x=x;
+		this.y=y;
+		this.z=z;
+		this.size=size;
+		this.type=typeNo;
+	}
+	render()
+	{
+		push();
+//		translate(this.x, this.y, this.z);
+		let _height=80+this.type*20;
+		translate(this.x, this.y-_height/2, this.z);
+		box(this.size, _height, this.size);
+		pop();
+	}
+}
+
+class villageSystem
+{
+	constructor(radius, buildingSize, smallRoadPapping, largeRoadPadding, planeAltitude)
+	{
+		this.radius=radius;
+		this.planeAltitude=planeAltitude;
+		this.buildings=[];
+		this.resetBuilding(buildingSize,smallRoadPapping, largeRoadPadding);
+	}
+	resetBuilding(buildingSize, smallRoadSize, largeRoadSize)
+	{
+		let xPos=[], zPos=[];
+		const innerRadius=this.radius - smallRoadSize - buildingSize/2;
+		let xStride=-innerRadius, zStride=-innerRadius;
+		let xAdjust = 0, zAdjust = 0;
+		let tmpStride;
+		
+		const roadSize = () => Math.random() >0.8 ? largeRoadSize : smallRoadSize; //get road's width
+		const inArea=function(x, z)//check building is in circle
+		{
+			const diagonalBuildingSize=buildingSize /2 * Math.sqrt(2);
+			const rad=this.radius-diagonalBuildingSize;
+			return rad <= (x*x+z*z) ;
+		};
+		
+		this.buildings=[]; //clear data
+		
+		//get building's x/z grid position
+		while(xStride<=innerRadius)
+		{
+			let padding=buildingSize + roadSize();
+			tmpStride=xStride;
+			xPos.push(xStride);
+			xStride += padding;
+		}
+		xAdjust = -(tmpStride-xPos[0])/2;
+		while(zStride<=innerRadius)
+		{
+			let padding=buildingSize + roadSize();
+			tmpStride=xStride;
+			zPos.push(zStride);
+			zStride += padding;
+		}
+		zAdjust = -(tmpStride-zPos[0])/2;
+		
+		//get Each Building's Position
+		for(let i=0;i<xPos.length;i++)
+		{
+			let currentX=xPos[i] + xAdjust;
+			this.buildings.push([]);
+			for(let j=0;j<zPos.length;j++)
+			{
+				let currentZ=zPos[j] + zAdjust;
+				if(inArea(currentX, currentZ))
+				{
+					this.buildings[i].push(new villageBuilding(currentX, this.planeAltitude, currentZ, buildingSize, randInt(0,5)));
+				}
+			}
+		}
+	}
+	renderFloor()
+	{
+		push();
+		translate(0,0,this.planeAltitude);
+		fill(10);
+		circle(0,0,this.radius);
+		pop();
+	}
+	renderBuildings()
+	{
+		fill(200);
+		for(let i=0;i<this.buildings.length;i++)
+		{
+			for(let j=0;j<this.buildings[i].length;j++)
+			{
+				this.buildings[i][j].render();
+			}
+		}
+	}
+}
 
 function setup()
 {
 	createCanvas(windowWidth,windowHeight,WEBGL);
-	myCam=new lybellP5Camera(0, -400, 800, 0,100,0);
+	myCam=new lybellP5Camera(0, -400, 800, 0,0,0);
 	myCam.initialize();
 	noStroke();
+	village=new villageSystem(1000,50,10,30,100);
 }
 function draw()
 {
@@ -19,8 +126,9 @@ function draw()
 	ambientLight(50);
 	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.6);
 	pointLight(255,255,255,mousePos);
-	fill(200);
-	box(100,100,50);
+	
+	village.renderFloor();
+	village.renderBuildings();
 }
 
 function windowResized()
