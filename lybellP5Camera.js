@@ -84,7 +84,7 @@ class lybellP5Camera{
 		dir.add(p5.Vector.mult(AxisX, x));
 		dir.add(p5.Vector.mult(AxisY, y));
 		
-		let w=p5.Vector.mult(AxizZ, -baseLen*depth);
+		let w=p5.Vector.mult(AxisZ, -baseLen*depth);
 		
 		let a=dir.magSq();
 		let b=2*p5.Vector.dot(dir, w);
