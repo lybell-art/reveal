@@ -91,6 +91,7 @@ class villageSystem
 	{
 		push();
 		translate(0,0,this.planeAltitude);
+		rotateX(PI/2);
 		fill("#24adaf");
 		circle(0,0,this.radius);
 		pop();
