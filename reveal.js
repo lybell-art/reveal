@@ -138,8 +138,13 @@ function draw()
 	village.renderFloor();
 	
 	ambientLight(50);
+	directionalLight(200,200,200,-1,1,-1);
 	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.3);
-	pointLight(255,255,255,mousePos);
+//	pointLight(255,255,255,mousePos);
+	push();
+	translate(mousePos);
+	sphere(30);
+	pop();
 	
 	village.renderBuildings();
 }
