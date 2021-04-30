@@ -172,7 +172,7 @@ function draw()
 
 function mousePressed()
 {
-	let mousePos=myCam.screenTo3DRevolve(mouseX - windowWidth/2,mouseY - windowHeight/2,1,0.1);
+	let mousePos=myCam.screenTo3DRevolve(mouseX - windowWidth/2,mouseY - windowHeight/2,1,0.1, true);
 	lightArr.push(mousePos);
 }
 function windowResized()
