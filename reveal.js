@@ -163,7 +163,7 @@ function draw()
 	}
 	push();
 	translate(mousePos);
-	sphere(30);
+	sphere(2);
 	pop();
 	let uLightPos=getUniformLightPosition(mousePos);
 	
