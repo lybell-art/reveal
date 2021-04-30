@@ -64,13 +64,46 @@ class lybellP5Camera{
 	}
 	screenTo3D(x, y, depth=1)
 	{
-		const AxisZ=p5.Vector.sub(this.pos, this.target).normalize();
-		const AxisX=p5.Vector.cross(createVector(0,1,0), AxisZ).normalize();
+		const AxisZ=p5.Vector.sub(this.target, this.pos).normalize();
+		const AxisX=p5.Vector.cross(AxisZ, createVector(0,1,0)).normalize();
 		const AxisY=p5.Vector.cross(AxisZ, AxisX).normalize();
 		const baseLen=this.camera.defaultEyeZ;
-		let baseO=p5.Vector.add(this.pos, p5.Vector.mult(AxisZ, -baseLen*depth));
+		let baseO=p5.Vector.add(this.pos, p5.Vector.mult(AxisZ, baseLen*depth));
 		baseO.add(p5.Vector.mult(AxisX, x*depth));
 		baseO.add(p5.Vector.mult(AxisY, y*depth));
+		return baseO;
+	}
+	screenTo3DRevolve(x, y, depth=1, radius=0.5)
+	{
+		const AxisZ=p5.Vector.sub(this.target, this.pos).normalize();
+		const AxisX=p5.Vector.cross(AxisZ, createVector(0,1,0)).normalize();
+		const AxisY=p5.Vector.cross(AxisZ, AxisX).normalize();
+		const baseLen=this.camera.defaultEyeZ;
+		
+		let dir=p5.Vector.mult(AxisZ, baseLen);
+		dir.add(p5.Vector.mult(AxisX, x));
+		dir.add(p5.Vector.mult(AxisY, y));
+		
+		let w=p5.Vector.mult(AxizZ, -baseLen*depth);
+		
+		let a=dir.magSq();
+		let b=2*p5.Vector.dot(dir, w);
+		let c=depth*depth - baseLen*baseLen*radius*radius;
+		let D=b*b-4*a*c;
+		
+		let baseO;
+		
+		if(D <=0 ) baseO=p5.Vector.add(this.pos, p5.Vector.mult(dir, depth));
+		else
+		{
+			let mult1=(-b+D)/2*a;
+			let mult2=(-b-D)/2*a;
+			if(mult1 < 0) mult1 = Infinity;
+			if(mult2 < 0) mult2 = Infinity;
+			let resMult=Math.min(mult1, mult2, depth);
+			baseO=p5.Vector.add(this.pos, p5.Vector.mult(dir, resMult));
+		}
+		
 		return baseO;
 	}
 }
