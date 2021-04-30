@@ -1,5 +1,6 @@
 let myCam;
 let village;
+let skyImg;
 
 function randInt(m,n){return Math.floor(Math.random()*(n-m))+m;}
 
@@ -109,6 +110,10 @@ class villageSystem
 	}
 }
 
+function preload()
+{
+	skyImg = loadImage('data/images/night_sky.jpg');
+}
 function setup()
 {
 	createCanvas(windowWidth,windowHeight,WEBGL);
@@ -125,6 +130,11 @@ function draw()
 	if (keyIsDown(DOWN_ARROW) || keyIsDown(83) ) myCam.rotate(0,-1); //S
 	if (keyIsDown(LEFT_ARROW) || keyIsDown(65) ) myCam.rotate(-1,0); //A
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D	
+	
+	push();
+	texture(skyImg);
+	sphere(2100);
+	pop();
 	
 	ambientLight(50);
 	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.3);
