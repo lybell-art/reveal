@@ -119,7 +119,7 @@ function setup()
 	myCam=new lybellP5Camera(0, -400, 800, 0,0,0);
 	myCam.initialize();
 	noStroke();
-	village=new villageSystem(1000,100,20,60,100);
+	village=new villageSystem(1000,100,20,60,250);
 }
 function draw()
 {
@@ -134,12 +134,12 @@ function draw()
 	texture(skyImg);
 	sphere(2100);
 	pop();
+	village.renderFloor();
 	
 	ambientLight(50);
 	let mousePos=myCam.screenTo3D(mouseX - windowWidth/2,mouseY - windowHeight/2,0.3);
 	pointLight(255,255,255,mousePos);
 	
-	village.renderFloor();
 	village.renderBuildings();
 }
 
