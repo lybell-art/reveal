@@ -92,7 +92,7 @@ class villageSystem
 		push();
 		translate(0,this.planeAltitude,0);
 		rotateX(PI/2);
-		fill("#24adaf");
+		fill(25);
 		circle(0,0,this.radius*2);
 		pop();
 	}
