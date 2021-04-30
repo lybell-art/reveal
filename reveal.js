@@ -92,10 +92,10 @@ class villageSystem
 	renderFloor()
 	{
 		push();
-		translate(0,0,this.planeAltitude);
+		translate(0,this.planeAltitude,0);
 		rotateX(PI/2);
 		fill("#24adaf");
-		circle(0,0,this.radius);
+		circle(0,0,this.radius*2);
 		pop();
 	}
 	renderBuildings()
