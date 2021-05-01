@@ -28,7 +28,7 @@ void main()
 	vec3 diffuseLightDir=normalize((uViewMatrix * vec4(0.7,-0.8,1.0,0.0)).xyz);
 	vec3 harfDiffuseLightDir=normalize((cameraDir+diffuseLightDir)/2.0);
 	
-	float veiledDst = distance(diffuseLightDir * 1000, absolutePos);
+	float veiledDst = distance(diffuseLightDir * 1000.0, absolutePos);
 	float veiledAttn = getAttn(veiledDst) ;
 	
 	vec3 veiledColor=ambientCol + veiledCol * veiledAttn * (dot(diffuseLightDir, vNormal) + pow(max(0.0, dot(harfDiffuseLightDir,vNormal)), 15.0) );
