@@ -7,6 +7,32 @@ let hiddenVideo;
 
 function randInt(m,n){return Math.floor(Math.random()*(n-m))+m;}
 
+function drawStar(v)
+{
+	const r=4;
+	push();
+	translate(v);
+	beginShape(TRIANGLES);
+	for(var i=-1;i<2;i+=2)
+	{
+		vertex(r,i*r,r);vertex(0,i*3*r,0);vertex(r,i*r,-r);
+		vertex(r,i*r,-r);vertex(0,i*3*r,0);vertex(-r,i*r,-r);
+		vertex(-r,i*r,-r);vertex(0,i*3*r,0);vertex(-r,i*r,r);
+		vertex(-r,i*r,r);vertex(0,i*3*r,0);vertex(r,i*r,r);
+		
+		vertex(r,r,i*r);vertex(0,0,i*3*r);vertex(r,-r,i*r);
+		vertex(r,-r,i*r);vertex(0,0,i*3*r);vertex(-r,-r,i*r);
+		vertex(-r,-r,i*r);vertex(0,0,i*3*r);vertex(-r,r,i*r);
+		vertex(-r,r,i*r);vertex(0,0,i*3*r);vertex(r,r,i*r);
+		
+		vertex(i*r,r,r);vertex(i*3*r,0,0);vertex(i*r,r,-r);
+		vertex(i*r,r,-r);vertex(i*3*r,0,0);vertex(i*r,-r,-r);
+		vertex(i*r,-r,-r);vertex(i*3*r,0,0);vertex(i*r,-r,r);
+		vertex(i*r,-r,r);vertex(i*3*r,0,0);vertex(i*r,r,r);
+	}
+	endShape();
+	pop();
+}
 
 class villageBuilding
 {
@@ -171,19 +197,11 @@ function draw()
 	shader(myShader);
 	for(let i=0;i<lightArr.length;i++)
 	{
-		push();
-		translate(lightArr[i]);
-//		sphere(30);
-		box(10,10,10);
-		pop();
+		drawStar(lightArr[i]);
 	}
-	push();
-	translate(mousePos);
-	sphere(25);
-	pop();
-	box(200, 200, 200);
-//	village.renderBuildings();
-//	resetShader();
+	drawStar(mousePos);
+	village.renderBuildings();
+	resetShader();
 }
 
 function mousePressed()
