@@ -3,6 +3,7 @@ let village;
 let skyImg;
 let lightArr=[];
 let myShader;
+let hiddenVideo;
 
 function randInt(m,n){return Math.floor(Math.random()*(n-m))+m;}
 
@@ -127,6 +128,7 @@ function preload()
 {
 	skyImg = loadImage('data/images/night_sky.jpg');
 	myShader = loadShader("reveal.vert", "reveal.frag");
+	hiddenVideo = createVideo(['assets/video/sample_video.mp4', 'assets/video/sample_video.webm']);
 }
 function setup()
 {
@@ -136,6 +138,10 @@ function setup()
 	myCam.constrainZoom(0,2099);
 	noStroke();
 	village=new villageSystem(1000,100,20,60,250);
+	
+	hiddenVideo.loop();
+	hiddenVideo.hide();
+	hiddenVideo.volume(0);
 }
 function draw()
 {
@@ -161,6 +167,7 @@ function draw()
 	myShader.setUniform('uResolution', [width, height]);
 	myShader.setUniform('lightPos', uLightPos);
 	myShader.setUniform('lightCount', uLightPos.length / 3);
+	myShader.setUniform('video', hiddenVideo);
 	shader(myShader);
 	for(let i=0;i<lightArr.length;i++)
 	{
