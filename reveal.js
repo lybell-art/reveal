@@ -160,6 +160,7 @@ function draw()
 	
 	myShader.setUniform('uResolution', [width, height]);
 	myShader.setUniform('lightPos', uLightPos);
+	myShader.setUniform('lightCount', uLightPos.length / 3);
 	shader(myShader);
 	for(let i=0;i<lightArr.length;i++)
 	{
