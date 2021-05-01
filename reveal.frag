@@ -29,7 +29,7 @@ void main()
 	vec3 reflectLightDir=reflect(-diffuseLightDir, vNormal);
 	
 	vec3 veiledDiffuse = veiledCol * max(0.0, dot(diffuseLightDir, vNormal));
-	vec3 veiledSpecular = veiledCol * pow(max(0.0, dot(reflectLightDir,cameraDir)), 8.0);
+	vec3 veiledSpecular = veiledCol * -pow(max(0.0, dot(reflectLightDir,cameraDir)), 8.0);
 	float veiledDst = distance(diffuseLightDir * 1000.0, absolutePos);
 	float veiledAttn = getAttn(veiledDst / 400.0) ;
 	
