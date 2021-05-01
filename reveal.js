@@ -171,7 +171,7 @@ function draw()
 	}
 	push();
 	translate(mousePos);
-	sphere(2);
+	sphere(25);
 	pop();
 	
 //	village.renderBuildings();
