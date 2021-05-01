@@ -6,7 +6,6 @@ attribute vec3 aNormal;
 
 uniform mat4 uProjectionMatrix;
 uniform mat4 uModelViewMatrix;
-uniform mat4 uModelMatrix;
 
 varying vec3 absolutePos;
 varying vec3 vNormal;
