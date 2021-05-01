@@ -182,7 +182,7 @@ function draw()
 	texture(skyImg);
 	sphere(2100);
 	pop();
-//	village.renderFloor();
+	village.renderFloor();
 	
 	ambientLight(50);
 	directionalLight(200,200,200,-1,1,-1);
@@ -195,13 +195,14 @@ function draw()
 	myShader.setUniform('lightCount', uLightPos.length / 3);
 	myShader.setUniform('video', hiddenVideo);
 	shader(myShader);
+	village.renderBuildings();
+	resetShader();
+	color(255);
 	for(let i=0;i<lightArr.length;i++)
 	{
 		drawStar(lightArr[i]);
 	}
 	drawStar(mousePos);
-	village.renderBuildings();
-	resetShader();
 }
 
 function mousePressed()
