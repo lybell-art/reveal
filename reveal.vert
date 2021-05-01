@@ -17,6 +17,6 @@ void main() {
   gl_Position = uProjectionMatrix * positionVec4;
   
   absolutePos = positionVec4.xyz;
-  vNormal = uNormalMatrix * aNormal;
+  vNormal = normalize(uNormalMatrix * aNormal);
   vTexCoord = aTexCoord;
 }
