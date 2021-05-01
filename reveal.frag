@@ -37,10 +37,10 @@ void main()
 	vec3 veiledDiffuseCol = vec3(1.0,1.0,1.0);
 	vec3 veiledSpecularCol = vec3(1.0,1.0,1.0);
 	
-	vec3 diffuse = veiledDiffuseCol * dotLN;
+	vec3 diffuse = veiledDiffuseCol * max(0.0, dotLN);
 	vec3 specular = veiledSpecularCol * pow(max(0.0, dot(nView,nRefl)), 4.0);
-	vec3 invDiffuse = veiledAmbientCol * dotInvLN;
+	vec3 invDiffuse = veiledAmbientCol * max(0.0, dotInvLN);
 	
-	vec3 veiledColor = veiledAmbientCol + invDiffuse;
+	vec3 veiledColor = veiledAmbientCol + diffuse * 0.5;
 	gl_FragColor = vec4(veiledColor, 1.0);
 }
