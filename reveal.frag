@@ -17,7 +17,7 @@ uniform vec3 lightPos[MAX_LIGHTS]; //lights position
 void main()
 {
 	vec3 absolutePos = (uModelViewMatrix * vec4(vPosition, 1.0)).xyz;
-	vec3 uNormal = normalize(uNormalMatrix * vNormal); //camera-relative normal vector
+	vec3 uNormal = normalize(uNormalMatrix * vec4(vNormal, 1.0)).xyz; //camera-relative normal vector
 	vec3 cameraDir=vec3(0.0,0.0,1.0);
 	
 	vec3 ambientCol=vec3(0.1,0.1,0.1);
