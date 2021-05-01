@@ -60,7 +60,7 @@ void main()
 		vec3 _specular = revealSpecularCol * pow(max(0.0, dot(nView,_nRefl)), 16.0);
 		
 		float dist = distance(_lightPos, objPos);
-		float attn = getAttn(dist / (uResolution.x * 0.25)) ;
+		float attn = getAttn(dist / (uResolution.x * 0.5)) ;
 		revealColor += (_diffuse + _specular)*attn;
 	}
 	gl_FragColor = vec4(revealColor, 1.0);
