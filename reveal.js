@@ -202,7 +202,7 @@ function draw()
 	{
 		drawStar(lightArr[i]);
 	}
-	drawStar(mousePos);
+	hiddenVideo.volume(constrain(lightArr.length / 20.0, 0.0, 1.0));
 }
 
 function mousePressed()
