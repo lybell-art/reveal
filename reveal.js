@@ -112,13 +112,14 @@ class villageSystem
 
 function getUniformLightPosition(mousePos)
 {
+	const MAX_LIGHTS=10;
 	let res=[];
-	for(let i=0;i<lightArr.length;i++)
+	for(let i=0;i<Math.min(lightArr.length, MAX_LIGHTS);i++)
 	{
 		let a=lightArr[i];
 		res.push(a.x, a.y, a.z);
 	}
-	res.push(mousePos.x, mousePos.y, mousePos.z);
+	if(lightArr.length < MAX_LIGHTS) res.push(mousePos.x, mousePos.y, mousePos.z);
 	return res;
 }
 
@@ -158,6 +159,7 @@ function draw()
 //	pointLight(255,255,255,mousePos);
 	
 	myShader.setUniform('uResolution', [width, height]);
+	myShader.setUniform('lightPos', uLightPos);
 	shader(myShader);
 	for(let i=0;i<lightArr.length;i++)
 	{
