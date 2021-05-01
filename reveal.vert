@@ -1,7 +1,7 @@
 precision mediump float;
 
 attribute vec3 aPosition; //local position
-attribute vec2 aTexCoord; /relative texture coord
+attribute vec2 aTexCoord; //relative texture coord
 attribute vec3 aNormal; //absolute normal vector
 
 uniform mat4 uProjectionMatrix; //camera->viewpoint transformation matrix
