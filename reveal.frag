@@ -28,10 +28,12 @@ void main()
 	vec3 diffuseLightDir=normalize((uViewMatrix * vec4(0.7,-0.8,1.0,0.0)).xyz);
 	vec3 harfDiffuseLightDir=normalize((cameraDir+diffuseLightDir)/2.0);
 	
+	float veiledDiffuse = veiledCol * max(0.0, dot(diffuseLightDir, vNormal));
+	float veiledSpecular = veiledCol * pow(max(0.0, dot(harfDiffuseLightDir,vNormal)), 15.0);
 	float veiledDst = distance(diffuseLightDir * 1000.0, absolutePos);
 	float veiledAttn = getAttn(veiledDst / 400.0) ;
 	
-	vec3 veiledColor=ambientCol + veiledCol * veiledAttn * (dot(diffuseLightDir, vNormal) + pow(max(0.0, dot(harfDiffuseLightDir,vNormal)), 15.0) );
+	vec3 veiledColor=ambientCol + veiledAttn * (veiledDiffuse + veiledSpecular);
 //	vec3 veiledColor = diffuseLightDir;
 	vec3 uv = lightPos[0]/uResolution.xyx; 
 	gl_FragColor=vec4(veiledColor.x, veiledColor.y, veiledColor.z, 1.0);
