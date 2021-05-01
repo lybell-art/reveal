@@ -28,8 +28,8 @@ void main()
 	vec3 diffuseLightDir=normalize((uViewMatrix * vec4(0.7,-0.8,1.0,0.0)).xyz);
 	vec3 harfDiffuseLightDir=normalize((cameraDir+diffuseLightDir)/2.0);
 	
-	float veiledDiffuse = veiledCol * max(0.0, dot(diffuseLightDir, vNormal));
-	float veiledSpecular = veiledCol * pow(max(0.0, dot(harfDiffuseLightDir,vNormal)), 64.0);
+	vec3 veiledDiffuse = veiledCol * max(0.0, dot(diffuseLightDir, vNormal));
+	vec3 veiledSpecular = veiledCol * pow(max(0.0, dot(harfDiffuseLightDir,vNormal)), 64.0);
 	float veiledDst = distance(diffuseLightDir * 1000.0, absolutePos);
 	float veiledAttn = getAttn(veiledDst / 400.0) ;
 	
