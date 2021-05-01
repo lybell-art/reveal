@@ -17,6 +17,6 @@ void main() {
   gl_Position = uProjectionMatrix * positionVec4; //screen-relative position
   
   vPosition = aPosition;
-  vNormal = normalize(uNormalMatrix * vec4(aNormal, 1.0)).xyz;
+  vNormal = normalize(uNormalMatrix * vec4(aNormal, 0.0)).xyz;
   vTexCoord = aTexCoord; //texture coordinate
 }
