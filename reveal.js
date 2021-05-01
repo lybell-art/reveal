@@ -157,6 +157,7 @@ function draw()
 	let uLightPos=getUniformLightPosition(mousePos);
 //	pointLight(255,255,255,mousePos);
 	
+	myShader.setUniform('uResolution', [width, height]);
 	shader(myShader);
 	for(let i=0;i<lightArr.length;i++)
 	{
