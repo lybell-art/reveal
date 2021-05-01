@@ -163,7 +163,8 @@ function draw()
 	{
 		push();
 		translate(lightArr[i]);
-		sphere(30);
+//		sphere(30);
+		box(10,10,10);
 		pop();
 	}
 	push();
