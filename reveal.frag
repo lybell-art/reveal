@@ -58,8 +58,8 @@ void main()
 		vec3 _nRefl = reflect(-_nLight, nNormal);
 		
 		float _dotLN = dot(_nLight, nNormal);
-		vec3 _diffuseAmount=max(0.0, _dotLN);
-		vec3 _specularAmount=pow(max(0.0, dot(nView,_nRefl)), 16.0);
+		float _diffuseAmount=max(0.0, _dotLN);
+		float _specularAmount=pow(max(0.0, dot(nView,_nRefl)), 16.0);
 		vec3 _diffuse = revealDiffuseCol * _diffuseAmount;
 		vec3 _specular = revealSpecularCol * _specularAmount;
 		
@@ -72,7 +72,7 @@ void main()
 	revealAmount = clamp(revealAmount, 0.0, 1.0);
 	
 	vec2 uv = gl_FragCoord.xy/uResolution * 0.5 + 0.5;
-	vec4 tex = texture2D(tex0, uv) * vec4(revealColor, 1.0) * vec4(maskedColor, 1.0);
+	vec4 tex = texture2D(video, uv) * vec4(revealColor, 1.0) * vec4(maskedColor, 1.0);
 	
 	gl_FragColor = mix(vec4(veiledColor, 1.0), tex, revealAmount);
 }
