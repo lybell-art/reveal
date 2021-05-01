@@ -197,7 +197,7 @@ function draw()
 	shader(myShader);
 	village.renderBuildings();
 	resetShader();
-	color(255);
+	emissiveMaterial(255, 255, 255);
 	for(let i=0;i<lightArr.length;i++)
 	{
 		drawStar(lightArr[i]);
