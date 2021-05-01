@@ -8,6 +8,7 @@ varying vec2 vTexCoord; //texture map coord
 
 uniform mat4 uProjectionMatrix; //camera->viewpoint transformation matrix
 uniform mat4 uModelViewMatrix; //local->camera-relative transformation matrix
+uniform mat4 uNormalMatrix;
 uniform mat4 uViewMatrix; //absolute->camera-relative transformation matrix
 uniform vec2 uResolution; //screen width&height
 uniform vec3 lightPos[MAX_LIGHTS]; //lights position
