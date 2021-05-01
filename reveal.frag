@@ -71,7 +71,7 @@ void main()
 	revealColor = clamp(revealColor, 0.0, 1.0);
 	revealAmount = clamp(revealAmount, 0.0, 1.0);
 	
-	vec2 uv = gl_FragCoord.xy/uResolution * 0.5 + 0.5;
+	vec2 uv = gl_FragCoord.xy/uResolution;
 	uv.y = 1.0 - uv.y;
 	vec4 tex = texture2D(video, uv) * vec4(revealColor, 1.0) * vec4(maskedColor, 1.0);
 	
