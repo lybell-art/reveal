@@ -38,5 +38,5 @@ void main()
 	vec3 specular = veiledSpecularCol * pow(max(0.0, dot(nView,nRefl)), matShininess);
 	
 	vec3 veiledColor = veiledAmbientCol + diffuse + specular;
-	gl_FragColor = veiledColor;
+	gl_FragColor = vec4(veiledColor, 1.0);
 }
