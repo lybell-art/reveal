@@ -13,10 +13,10 @@ varying vec3 vNormal;
 varying vec2 vTexCoord;
 
 void main() {
-  vec4 positionVec4 = vec4(aPosition, 1.0);
-  gl_Position = uProjectionMatrix * uModelViewMatrix * positionVec4;
+  vec4 positionVec4 = uModelViewMatrix * vec4(aPosition, 1.0);
+  gl_Position = uProjectionMatrix * positionVec4;
   
-  absolutePos = (uModelMatrix * vec4(aPosition, 1.0) ).xyz;
+  absolutePos = positionVec4.xyz;
   vNormal = aNormal;
   vTexCoord = aTexCoord;
 }
