@@ -29,7 +29,7 @@ void main()
 	vec3 harfDiffuseLightDir=normalize((cameraDir+diffuseLightDir)/2.0);
 	
 	float veiledDst = distance(diffuseLightDir * 1000.0, absolutePos);
-	float veiledAttn = getAttn(veiledDst / 100.0) ;
+	float veiledAttn = getAttn(veiledDst / 400.0) ;
 	
 	vec3 veiledColor=ambientCol + veiledCol * veiledAttn * (dot(diffuseLightDir, vNormal) + pow(max(0.0, dot(harfDiffuseLightDir,vNormal)), 15.0) );
 //	vec3 veiledColor = diffuseLightDir;
