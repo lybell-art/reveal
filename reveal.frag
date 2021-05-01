@@ -35,7 +35,7 @@ void main()
 	float veiledAttn = getAttn(veiledDst / 400.0) ;
 	
 //	vec3 veiledColor=ambientCol + veiledAttn * (veiledDiffuse + veiledSpecular);
-	vec3 veiledColor = reflectLightDir;
+	vec3 veiledColor = veiledSpecular;
 //	vec3 veiledColor = diffuseLightDir;
 	vec3 uv = lightPos[0]/uResolution.xyx; 
 	gl_FragColor=vec4(veiledColor.x, veiledColor.y, veiledColor.z, 1.0);
