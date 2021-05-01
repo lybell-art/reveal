@@ -16,7 +16,7 @@ void main() {
   vec4 positionVec4 = uModelViewMatrix * vec4(aPosition, 1.0); //camera-relative position
   gl_Position = uProjectionMatrix * positionVec4; //screen-relative position
   
-  vPosition = aPosition;
+  vPosition = positionVec4.xyz;
   vNormal = normalize(uNormalMatrix * aNormal);
   vTexCoord = aTexCoord; //texture coordinate
 }
