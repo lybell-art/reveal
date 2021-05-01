@@ -76,5 +76,5 @@ void main()
 	vec4 tex = texture2D(video, uv) * vec4(revealColor, 1.0) * vec4(maskedColor, 1.0);
 	
 //	gl_FragColor = mix(vec4(veiledColor, 1.0), tex, revealAmount);
-	gl_FragColor = vec4(uv.x, -uv.x, 0.0, 1.0);
+	gl_FragColor = vec4(uv.x/2.0, 0.0, 0.0, 1.0);
 }
