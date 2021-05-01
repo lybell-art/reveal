@@ -171,7 +171,7 @@ function draw()
 	pop();
 	
 //	village.renderBuildings();
-	resetShader();
+//	resetShader();
 }
 
 function mousePressed()
