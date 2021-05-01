@@ -2,6 +2,7 @@ let myCam;
 let village;
 let skyImg;
 let lightArr=[];
+let myShader;
 
 function randInt(m,n){return Math.floor(Math.random()*(n-m))+m;}
 
@@ -124,6 +125,7 @@ function getUniformLightPosition(mousePos)
 function preload()
 {
 	skyImg = loadImage('data/images/night_sky.jpg');
+	myShader = loadShader("reveal.vert", "reveal.frag");
 }
 function setup()
 {
@@ -152,8 +154,10 @@ function draw()
 	ambientLight(50);
 	directionalLight(200,200,200,-1,1,-1);
 	let mousePos=myCam.screenTo3DRevolveToTarget(mouseX - windowWidth/2,mouseY - windowHeight/2,0.5);
+	let uLightPos=getUniformLightPosition(mousePos);
 //	pointLight(255,255,255,mousePos);
 	
+	shader(myShader);
 	for(let i=0;i<lightArr.length;i++)
 	{
 		push();
@@ -165,9 +169,9 @@ function draw()
 	translate(mousePos);
 	sphere(2);
 	pop();
-	let uLightPos=getUniformLightPosition(mousePos);
 	
 //	village.renderBuildings();
+	resetShader();
 }
 
 function mousePressed()
