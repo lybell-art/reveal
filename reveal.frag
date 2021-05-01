@@ -20,7 +20,7 @@ float getAttn(float dist)
 
 void main()
 {
-	vec3 absolutePos = (uModelViewMatrix * vec4(vPosition, 1.0)).xyz;
+	vec3 absolutePos = vPosition;
 	vec3 cameraDir=vec3(0.0,0.0,1.0);
 	
 	vec3 ambientCol=vec3(0.1,0.1,0.1);
