@@ -2,8 +2,8 @@
 
 precision mediump float;
 
-varying vec3 vPosition;
-varying vec3 vNormal;
+varying vec3 objPos;
+varying vec3 objNormal;
 varying vec2 vTexCoord; //texture map coord
 
 uniform mat4 uProjectionMatrix; //camera->viewpoint transformation matrix
@@ -20,23 +20,23 @@ float getAttn(float dist)
 
 void main()
 {
-	vec3 absolutePos = vPosition;
-	vec3 normPos = normalize(absolutePos);
-	vec3 cameraDir=vec3(0.0,0.0,1.0);
+	vec3 viewPos=vec3(0.0,0.0,0.0);
+	vec4 abslightDir=vec4(0.6,-1.0,0.8, 0.0);
+
+	vec3 nView = normalize(viewPos - objPos);
+	vec3 nLight = normalize(uViewMatrix * abslightDir).xyz;
+	vec3 nNormal = normalize(objNormal);
+	vec3 nRefl = reflect(-nLight, nNormal);
 	
-	vec3 ambientCol=vec3(0.1,0.1,0.1);
-	vec3 veiledCol=vec3(1.0,1.0,1.0);
-	vec3 diffuseLightDir=normalize((uViewMatrix * vec4(0.7,-0.8,1.0,0.0)).xyz);
-	vec3 reflectLightDir=reflect(-diffuseLightDir, vNormal);
+	float dotLN = dot(nLight, nNormal);
 	
-	vec3 veiledDiffuse = veiledCol * max(0.0, dot(diffuseLightDir, vNormal));
-	vec3 veiledSpecular = veiledCol * pow(max(0.0, dot(reflectLightDir,-normPos)), 8.0);
-	float veiledDst = distance(diffuseLightDir * 1000.0, absolutePos);
-	float veiledAttn = getAttn(veiledDst / 400.0) ;
+	vec3 veiledAmbientCol = vec3(0.1,0.1,0.1);
+	vec3 veiledDiffuseCol = vec3(1.0,1.0,1.0);
+	vec3 veiledSpecularCol = vec3(1.0,1.0,1.0);
 	
-//	vec3 veiledColor=ambientCol + veiledAttn * (veiledDiffuse + veiledSpecular);
-	vec3 veiledColor = veiledSpecular;
-//	vec3 veiledColor = diffuseLightDir;
-	vec3 uv = lightPos[0]/uResolution.xyx; 
-	gl_FragColor=vec4(veiledColor.x, veiledColor.y, veiledColor.z, 1.0);
+	vec3 diffuse = veiledDiffuseCol * dotLN;
+	vec3 specular = veiledSpecularCol * pow(max(0.0, dot(nView,nRefl)), matShininess);
+	
+	vec3 veiledColor = veiledAmbientCol + diffuse + specular;
+	gl_FragColor = veiledColor;
 }
