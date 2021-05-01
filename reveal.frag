@@ -49,8 +49,9 @@ void main()
 	vec3 revealDiffuseCol = vec3(0.8,0.8,0.8);
 	vec3 revealSpecularCol = vec3(1.0,1.0,1.0);
 	vec3 revealColor = vec3(0.0, 0.0, 0.0);
-	for(int i=0; i < lightCount; i++)
+	for(int i=0; i < MAX_LIGHTS; i++)
 	{
+		if (i >= lightCount){break;}
 		vec3 _lightPos = (uViewMatrix * vec4(lightPos[i], 1.0)).xyz;
 		vec3 _nLight = normalize(_lightPos - objPos);
 		vec3 _nRefl = reflect(-_nLight, nNormal);
