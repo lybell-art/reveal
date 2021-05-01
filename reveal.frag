@@ -62,7 +62,7 @@ void main()
 		
 		float dist = distance(_lightPos, objPos);
 		float attn = getAttn(dist / (uResolution.x * 0.25)) ;
-		revealColor += (_diffuse + _specular)*attn;
+		revealColor += (_diffuse + _specular)*attn *0.75;
 	}
 	gl_FragColor = vec4(revealColor, 1.0);
 }
