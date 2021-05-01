@@ -64,7 +64,7 @@ void main()
 		vec3 _specular = revealSpecularCol * _specularAmount;
 		
 		float dist = distance(_lightPos, objPos);
-		float attn = getAttn(dist / (uResolution.x * 0.25)) ;
+		float attn = getAttn(dist / (uResolution.x * 0.1)) ;
 		revealColor += (_diffuse + _specular)*attn *0.75;
 		revealAmount += (_diffuseAmount * 0.8 + _specularAmount)*attn * 0.75;
 	}
