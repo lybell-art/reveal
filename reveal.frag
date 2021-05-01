@@ -13,7 +13,7 @@ uniform vec2 uResolution; //screen width&height
 uniform vec3 lightPos[MAX_LIGHTS]; //lights position
 //uniform sampler2D video;
 
-float getAttn(dist)
+float getAttn(float dist)
 {
 	return 1.0/(1.0 + 0.1*dist + 0.01*dist*dist);
 }
