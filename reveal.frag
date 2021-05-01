@@ -11,7 +11,7 @@ uniform mat4 uModelViewMatrix; //local->camera-relative transformation matrix
 uniform mat4 uViewMatrix; //absolute->camera-relative transformation matrix
 uniform vec2 uResolution; //screen width&height
 uniform vec3 lightPos[MAX_LIGHTS]; //lights position
-uniform float lightCount; //the number of lights
+uniform int lightCount; //the number of lights
 //uniform sampler2D video;
 
 float getAttn(float dist)
