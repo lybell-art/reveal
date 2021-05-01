@@ -6,6 +6,7 @@ attribute vec3 aNormal;
 
 uniform mat4 uProjectionMatrix;
 uniform mat4 uModelViewMatrix;
+uniform mat3 uNormalMatrix;
 
 varying vec3 absolutePos;
 varying vec3 vNormal;
@@ -16,6 +17,6 @@ void main() {
   gl_Position = uProjectionMatrix * positionVec4;
   
   absolutePos = positionVec4.xyz;
-  vNormal = aNormal;
+  vNormal = uNormalMatrix * aNormal;
   vTexCoord = aTexCoord;
 }
