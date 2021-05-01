@@ -18,7 +18,7 @@ void main()
 	vec3 ambientCol=vec3(0.1,0.1,0.1);
 	vec3 diffuseCol=vec3(1.0,1.0,1.0);
 	vec3 diffuseLightDir=normalize((uViewMatrix * vec4(0.7,-0.8,1.0,0.0)).xyz);
-	vec3 harfDiffuseLightDir=normalize((cameraDir+diffuseLightDir)/2);
+	vec3 harfDiffuseLightDir=normalize((cameraDir+diffuseLightDir)/2.0);
 	
 	vec3 veiledColor=ambientCol + diffuseCol * dot(diffuseLightDir, vNormal) + diffuseCol * pow(max(0.0, dot(harfDiffuseLightDir,vNormal)), 2.5);
 //	vec3 veiledColor = diffuseLightDir;
