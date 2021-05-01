@@ -173,7 +173,7 @@ function draw()
 	translate(mousePos);
 	sphere(25);
 	pop();
-	
+	box(200, 200, 200);
 //	village.renderBuildings();
 //	resetShader();
 }
