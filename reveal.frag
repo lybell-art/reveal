@@ -11,6 +11,7 @@ uniform mat4 uModelViewMatrix; //local->camera-relative transformation matrix
 uniform mat4 uViewMatrix; //absolute->camera-relative transformation matrix
 uniform vec2 uResolution; //screen width&height
 uniform vec3 lightPos[MAX_LIGHTS]; //lights position
+uniform float lightCount; //the number of lights
 //uniform sampler2D video;
 
 float getAttn(float dist)
@@ -42,6 +43,25 @@ void main()
 	vec3 invDiffuse = veiledAmbientCol * max(0.0, dotInvLN);
 	
 	vec3 veiledColor = veiledAmbientCol + diffuse  * min(getAttn(objPos.z / (uResolution.x * 0.25)), 1.0) * 0.5 + invDiffuse + specular * 0.4;
-	veiledColor *= 0.3;
-	gl_FragColor = vec4(veiledColor, 1.0);
+	vec3 maskedColor = 0.9 + veiledColor * 0.1;
+	veiledColor *= 0.2;
+	
+	vec3 revealDiffuseCol = vec3(0.3,0.3,0.3);
+	vec3 revealSpecularCol = vec3(1.0,1.0,1.0);
+	vec3 revealColor = vec3(0.0, 0.0, 0.0);
+	for(int i=0; i <1; i++)
+	{
+		vec3 _lightPos = (uViewMatrix * vec4(lightPos[i], 1.0)).xyz;
+		vec3 _nLight = normalize(_lightPos - objPos);
+		vec3 _nRefl = reflect(-_nLight, nNormal);
+		
+		float _dotLN = dot(_nLight, nNormal);
+		vec3 _diffuse = revealDiffuseCol * max(0.0, _dotLN);
+		vec3 _specular = revealSpecularCol * pow(max(0.0, dot(nView,_nRefl)), 16.0);
+		
+		float dist = distance(_lightPos, objPos);
+		float attn = getAttn(dist) ;
+		revealColor += (_diffuse + _specular)*attn;
+	}
+	gl_FragColor = vec4(revealColor, 1.0);
 }
