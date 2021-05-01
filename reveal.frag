@@ -18,7 +18,7 @@ void main()
 	vec3 diffuseLightDir=(uViewMatrix * vec4(0.7,1.0,1.0,1.0)).xyz;
 	
 //	vec3 veiledColor=ambientCol + diffuseCol * dot(diffuseLightDir, vNormal);
-	vec3 veiledColor = ambientCol + diffuseCol + vNormal;
+	vec3 veiledColor = diffuseLightDir;
 	vec3 uv = lightPos[0]/uResolution.xyx; 
 	gl_FragColor=vec4(veiledColor.x, veiledColor.y, veiledColor.z, 1.0);
 }
