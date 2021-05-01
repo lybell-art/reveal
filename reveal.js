@@ -128,7 +128,7 @@ function preload()
 {
 	skyImg = loadImage('data/images/night_sky.jpg');
 	myShader = loadShader("reveal.vert", "reveal.frag");
-	hiddenVideo = createVideo(['assets/video/sample_video.mp4', 'assets/video/sample_video.webm']);
+	hiddenVideo = createVideo(['data/video/sample_video.mp4']);
 }
 function setup()
 {
