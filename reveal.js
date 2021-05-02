@@ -152,11 +152,11 @@ function preload()
 function setup()
 {
 	createCanvas(windowWidth,windowHeight,WEBGL);
-	myCam=new lybellP5Camera(0, -GLOVAL_ZOOM*0.4, GLOVAL_ZOOM*0.8, 0,0,0);
+	myCam=new lybellP5Camera(0, -GLOVAL_ZOOM*0.5, GLOVAL_ZOOM*1, 0,0,0);
 	myCam.initialize();
 	myCam.constrainZoom(0,GLOVAL_ZOOM*2.09);
 	noStroke();
-	village=new villageSystem(GLOVAL_ZOOM*1.2,GLOVAL_ZOOM*0.2,GLOVAL_ZOOM*0.03,GLOVAL_ZOOM*0.1,GLOVAL_ZOOM*0.25);
+	village=new villageSystem(GLOVAL_ZOOM*1.2,GLOVAL_ZOOM*0.2,GLOVAL_ZOOM*0.03,GLOVAL_ZOOM*0.1,GLOVAL_ZOOM*0.3);
 	
 	hiddenVideo.loop();
 	hiddenVideo.hide();
