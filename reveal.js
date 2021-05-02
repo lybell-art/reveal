@@ -1,6 +1,7 @@
 let myCam;
 let village;
 let skyImg;
+let buildingModel=[];
 let lightArr=[];
 let myShader;
 let hiddenVideo;
@@ -47,10 +48,12 @@ class villageBuilding
 	render()
 	{
 		push();
-//		translate(this.x, this.y, this.z);
+		translate(this.x, this.y, this.z);
 		let _height=80+this.type*20;
-		translate(this.x, this.y-_height/2, this.z);
-		box(this.size, _height, this.size);
+//		translate(this.x, this.y-_height/2, this.z);
+		scale(this.size / 50);
+		model(buildingModel[i]);
+//		box(this.size, _height, this.size);
 		pop();
 	}
 }
@@ -153,6 +156,10 @@ function getUniformLightPosition(mousePos)
 function preload()
 {
 	skyImg = loadImage('data/images/night_sky.jpg');
+	for(let i=0;i<5;i++)
+	{
+		buildingModel[i]=loadModel('data/models/building'+ (i+1) +'.obj');
+	}
 	myShader = loadShader("reveal.vert", "reveal.frag");
 	hiddenVideo = createVideo(['data/video/sample_video.mp4']);
 }
