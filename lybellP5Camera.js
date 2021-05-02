@@ -27,9 +27,9 @@ class lybellP5Camera{
 		
 		let r=Math.sqrt(x*x + z*z);
 		
-		let sinY=sin(_y*rad); let cosY=cos(_y*rad);
+		let sinY=Math.sin(_y*rad); let cosY=Math.cos(_y*rad);
 		let sinX1=x/r; let cosX1=z/r;
-		let sinX2=sin(_x*rad); let cosX2=cos(_x*rad);
+		let sinX2=Math.sin(_x*rad); let cosX2=Math.cos(_x*rad);
 		
 		let y1=y*cosY - r*sinY;
 		let z1=r;
@@ -53,7 +53,7 @@ class lybellP5Camera{
 	}
 	zoom(_z)
 	{
-		let newDist=this.dist * pow(1.0002,_z);
+		let newDist=this.dist * Math.pow(1.0002,_z);
 		newDist=constrain(newDist, this.minZoom, this.maxZoom);
 		this.setDist(newDist);
 	}
