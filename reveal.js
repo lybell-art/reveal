@@ -79,7 +79,7 @@ class villageSystem
 			xPos.push(xStride);
 			xStride += padding;
 		}
-		xAdjust = -(tmpStride+xPos[0])/2;
+		xAdjust = -(tmpStride+xPos[0])/2; //adjust buildings to center
 		while(zStride<=innerRadius)
 		{
 			let padding=buildingSize + roadSize();
@@ -97,6 +97,7 @@ class villageSystem
 			for(let j=0;j<zPos.length;j++)
 			{
 				let currentZ=zPos[j] + zAdjust;
+				//if each building is in circle, building object, including location and type information, is pushed into the array
 				if(inArea(currentX, currentZ))
 				{
 					this.buildings[i].push(new villageBuilding(currentX, this.planeAltitude, currentZ, buildingSize, randInt(0,5)));
@@ -104,7 +105,7 @@ class villageSystem
 			}
 		}
 	}
-	renderFloor()
+	renderFloor() //floor rendering
 	{
 		push();
 		translate(0,this.planeAltitude,0);
@@ -112,7 +113,7 @@ class villageSystem
 		cylinder(this.radius*2.5,1);
 		pop();
 	}
-	renderBuildings()
+	renderBuildings() //buildings rendering
 	{
 		fill(200);
 		for(let i=0;i<this.buildings.length;i++)
@@ -125,6 +126,7 @@ class villageSystem
 	}
 }
 
+//Convert the light's positional data into an array that glsl can understand
 function getUniformLightPosition(mousePos)
 {
 	const MAX_LIGHTS=10;
@@ -171,33 +173,43 @@ function draw()
 	if (keyIsDown(LEFT_ARROW) || keyIsDown(65) ) myCam.rotate(-1,0); //A
 	if (keyIsDown(RIGHT_ARROW) || keyIsDown(68) ) myCam.rotate(1,0); //D	
 	
+	//draw sky and floor
 	push();
 	texture(skyImg);
 	sphere(GLOVAL_ZOOM*2.1);
 	pop();
 	village.renderFloor();
 	
+	//get light position according to the mouse position
 	let mousePos=myCam.screenTo3DRevolveToTarget(mouseX - windowWidth/2,mouseY - windowHeight/2,0.5);
 	let uLightPos=getUniformLightPosition(mousePos);
 //	pointLight(255,255,255,mousePos);
 	
+	//send data to GLSL(shader programming)
 	myShader.setUniform('uResolution', [width, height]);
 	myShader.setUniform('lightPos', uLightPos);
 	myShader.setUniform('lightCount', uLightPos.length / 3);
 	myShader.setUniform('video', hiddenVideo);
 	shader(myShader);
+	
+	//draw buildings
 	village.renderBuildings();
 	resetShader();
+	
+	//draw stars
 	emissiveMaterial(255, 255, 255);
 	for(let i=0;i<lightArr.length;i++)
 	{
 		drawStar(lightArr[i]);
 	}
+	
+	//The more stars(=lights) there are, the louder the video will sound.
 	hiddenVideo.volume(constrain(lightArr.length / 20.0, 0.0, 1.0));
 }
 
 function mousePressed()
 {
+	//if mouse is pressed, current light position is pushed into the array
 	let mousePos=myCam.screenTo3DRevolveToTarget(mouseX - windowWidth/2,mouseY - windowHeight/2,0.5);
 	lightArr.push(mousePos);
 }
