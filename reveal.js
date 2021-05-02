@@ -13,6 +13,7 @@ function drawStar(v)
 {
 	push();
 	translate(v);
+	scale(2);
 	model(starModel);
 	pop();
 }
