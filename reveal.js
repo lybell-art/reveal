@@ -147,7 +147,7 @@ function preload()
 	}
 	starModel=loadModel('data/models/star.obj');
 	myShader = loadShader("reveal.vert", "reveal.frag");
-	hiddenVideo = createVideo(['data/video/sample_video.mp4']);
+	hiddenVideo = createVideo(['data/video/reveal_vid.mp4']);
 }
 function setup()
 {
