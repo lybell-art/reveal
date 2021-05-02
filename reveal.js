@@ -5,6 +5,7 @@ let buildingModel=[];
 let lightArr=[];
 let myShader;
 let hiddenVideo;
+const GLOVAL_ZOOM=200;
 
 function randInt(m,n){return Math.floor(Math.random()*(n-m))+m;}
 
@@ -167,11 +168,11 @@ function preload()
 function setup()
 {
 	createCanvas(windowWidth,windowHeight,WEBGL);
-	myCam=new lybellP5Camera(0, -400, 800, 0,0,0);
+	myCam=new lybellP5Camera(0, -GLOVAL_ZOOM*0.4, GLOVAL_ZOOM*0.8, 0,0,0);
 	myCam.initialize();
-	myCam.constrainZoom(0,2099);
+	myCam.constrainZoom(0,GLOVAL_ZOOM*2.09);
 	noStroke();
-	village=new villageSystem(1200,150,30,100,250);
+	village=new villageSystem(GLOVAL_ZOOM*1.2,GLOVAL_ZOOM*0.15,GLOVAL_ZOOM*0.03,GLOVAL_ZOOM*0.1,GLOVAL_ZOOM*0.25);
 	
 	hiddenVideo.loop();
 	hiddenVideo.hide();
@@ -188,12 +189,10 @@ function draw()
 	
 	push();
 	texture(skyImg);
-	sphere(2100);
+	sphere(GLOVAL_ZOOM*2.1);
 	pop();
 	village.renderFloor();
 	
-	ambientLight(50);
-	directionalLight(200,200,200,-1,1,-1);
 	let mousePos=myCam.screenTo3DRevolveToTarget(mouseX - windowWidth/2,mouseY - windowHeight/2,0.5);
 	let uLightPos=getUniformLightPosition(mousePos);
 //	pointLight(255,255,255,mousePos);
