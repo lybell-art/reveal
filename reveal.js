@@ -1,7 +1,7 @@
 let myCam;
 let village;
 let skyImg;
-let buildingModel=[];
+let buildingModel=[], starModel;
 let lightArr=[];
 let myShader;
 let hiddenVideo;
@@ -11,28 +11,9 @@ function randInt(m,n){return Math.floor(Math.random()*(n-m))+m;}
 
 function drawStar(v)
 {
-	const r=GLOVAL_ZOOM * 0.004;
 	push();
 	translate(v);
-	beginShape(TRIANGLES);
-	for(var i=-1;i<2;i+=2)
-	{
-		vertex(r,i*r,r);vertex(0,i*3*r,0);vertex(r,i*r,-r);
-		vertex(r,i*r,-r);vertex(0,i*3*r,0);vertex(-r,i*r,-r);
-		vertex(-r,i*r,-r);vertex(0,i*3*r,0);vertex(-r,i*r,r);
-		vertex(-r,i*r,r);vertex(0,i*3*r,0);vertex(r,i*r,r);
-		
-		vertex(r,r,i*r);vertex(0,0,i*3*r);vertex(r,-r,i*r);
-		vertex(r,-r,i*r);vertex(0,0,i*3*r);vertex(-r,-r,i*r);
-		vertex(-r,-r,i*r);vertex(0,0,i*3*r);vertex(-r,r,i*r);
-		vertex(-r,r,i*r);vertex(0,0,i*3*r);vertex(r,r,i*r);
-		
-		vertex(i*r,r,r);vertex(i*3*r,0,0);vertex(i*r,r,-r);
-		vertex(i*r,r,-r);vertex(i*3*r,0,0);vertex(i*r,-r,-r);
-		vertex(i*r,-r,-r);vertex(i*3*r,0,0);vertex(i*r,-r,r);
-		vertex(i*r,-r,r);vertex(i*3*r,0,0);vertex(i*r,r,r);
-	}
-	endShape();
+	model(starModel);
 	pop();
 }
 
@@ -163,6 +144,7 @@ function preload()
 	{
 		buildingModel[i]=loadModel('data/models/building'+ (i+1) +'.obj');
 	}
+	starModel=loadModel('data/models/star.obj');
 	myShader = loadShader("reveal.vert", "reveal.frag");
 	hiddenVideo = createVideo(['data/video/sample_video.mp4']);
 }
@@ -173,7 +155,7 @@ function setup()
 	myCam.initialize();
 	myCam.constrainZoom(0,GLOVAL_ZOOM*2.09);
 	noStroke();
-	village=new villageSystem(GLOVAL_ZOOM*1.2,GLOVAL_ZOOM*0.15,GLOVAL_ZOOM*0.03,GLOVAL_ZOOM*0.1,GLOVAL_ZOOM*0.25);
+	village=new villageSystem(GLOVAL_ZOOM*1.2,GLOVAL_ZOOM*0.2,GLOVAL_ZOOM*0.03,GLOVAL_ZOOM*0.1,GLOVAL_ZOOM*0.25);
 	
 	hiddenVideo.loop();
 	hiddenVideo.hide();
