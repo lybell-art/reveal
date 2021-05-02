@@ -108,7 +108,7 @@ class villageSystem
 	{
 		push();
 		translate(0,this.planeAltitude,0);
-		fill(42,34,39);
+		fill(17,17,29);
 		cylinder(this.radius*2.5,1);
 		pop();
 	}
@@ -140,7 +140,7 @@ function getUniformLightPosition(mousePos)
 
 function preload()
 {
-	skyImg = loadImage('data/images/night_sky.jpg');
+	skyImg = loadImage('data/images/night_sky.png');
 	for(let i=0;i<5;i++)
 	{
 		buildingModel[i]=loadModel('data/models/building'+ (i+1) +'.obj');
