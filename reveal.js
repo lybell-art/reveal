@@ -171,7 +171,7 @@ function setup()
 	myCam.initialize();
 	myCam.constrainZoom(0,2099);
 	noStroke();
-	village=new villageSystem(1500,150,30,100,250);
+	village=new villageSystem(1200,150,30,100,250);
 	
 	hiddenVideo.loop();
 	hiddenVideo.hide();
