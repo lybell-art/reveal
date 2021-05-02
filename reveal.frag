@@ -47,7 +47,7 @@ void main()
 	vec3 maskedColor = 0.9 + veiledColor * 0.1;
 	veiledColor *= 0.2;
 	
-	//calculate revealing lights
+	//calculate enlightning lights
 	vec3 revealDiffuseCol = vec3(0.8,0.8,0.8);
 	vec3 revealSpecularCol = vec3(1.0,1.0,1.0);
 	vec3 revealColor = vec3(0.0, 0.0, 0.0);
@@ -73,7 +73,7 @@ void main()
 	revealColor = clamp(revealColor, 0.0, 1.0);
 	revealAmount = clamp(revealAmount, 0.0, 1.0);
 	
-	//Video is revealed in proportion to the actual light
+	//Video is revealed in proportion to the enlightning light
 	vec2 uv = (gl_FragCoord.xy/uResolution) / 2.0;
 	uv.y = 1.0 - uv.y;
 	vec4 tex = texture2D(video, uv) * vec4(revealColor, 1.0) * vec4(maskedColor, 1.0);
