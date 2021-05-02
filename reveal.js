@@ -5,13 +5,13 @@ let buildingModel=[];
 let lightArr=[];
 let myShader;
 let hiddenVideo;
-const GLOVAL_ZOOM=200;
+const GLOVAL_ZOOM=1000;
 
 function randInt(m,n){return Math.floor(Math.random()*(n-m))+m;}
 
 function drawStar(v)
 {
-	const r=4;
+	const r=GLOVAL_ZOOM * 0.004;
 	push();
 	translate(v);
 	beginShape(TRIANGLES);
