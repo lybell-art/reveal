@@ -52,7 +52,7 @@ class villageBuilding
 		let _height=80+this.type*20;
 //		translate(this.x, this.y-_height/2, this.z);
 		scale(this.size / 50);
-		model(buildingModel[i]);
+		model(buildingModel[this.type]);
 //		box(this.size, _height, this.size);
 		pop();
 	}
