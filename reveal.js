@@ -51,6 +51,7 @@ class villageBuilding
 		translate(this.x, this.y, this.z);
 		let _height=80+this.type*20;
 //		translate(this.x, this.y-_height/2, this.z);
+		rotateX(PI);
 		scale(this.size / 50);
 		model(buildingModel[this.type]);
 //		box(this.size, _height, this.size);
